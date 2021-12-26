@@ -1,0 +1,19 @@
+---
+
+
+- labels:
+    job: Skyroom-Internal
+    type: skyroom-internal
+    group: vms
+  targets:
+    - 212.33.204.28 #ticketing
+    - 212.33.204.31 #as-tele-01
+      #- 212.33.204.32 #sentry    
+    - 212.33.204.37 #gitlab-runner
+    - 212.33.204.44 #gitlab-runner
+    - 212.33.204.45 #gitlab
+      #- 212.33.204.46 #nextcloud
+    - 212.33.204.50 #elastic
+    - 212.33.204.54 #mattermost
+    - 212.33.204.57 #JIRA
+    - 212.33.204.62 #confluence

@@ -1,0 +1,110 @@
+groups:
+- name: targets
+  rules:
+  - alert: service_down
+    expr: up == 0
+    for: 180s
+    labels:
+      severity: critical
+    annotations:
+      summary: "{{ $labels.instance }} service non-operational"
+      description: "Service {{ $labels.instance }} is down."
+
+- name: hosts
+  rules:
+
+#cpu
+  - alert: High CPU utilization (up to 80%)
+    expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80 and 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) < 90
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: "The avg load is {{ humanize $value }}%"
+
+  - alert: High CPU utilization (up to 90%)
+    expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) >= 90
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "The avg load is {{ humanize $value }}%"
+
+#memory
+  - alert: High memory utilization (up to 80%)
+    expr: (1 - node_memory_MemAvailable_bytes{type!="media-vsan"} / node_memory_MemTotal_bytes{type!="media-vsan"}) * 100 > 80 and (1 - node_memory_MemAvailable_bytes{type!="media-vsan"} / node_memory_MemTotal_bytes{type!="media-vsan"})* 100 < 90
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Memory usage is {{ humanize $value }}%"
+
+  - alert: High memory utilization (up to 90%)
+    expr: (1 - node_memory_MemAvailable_bytes{type!="media-vsan"} / node_memory_MemTotal_bytes{type!="media-vsan"}) * 100 >= 90
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Memory usage is {{ humanize $value }}%"
+
+#disk
+  - alert: High disk utilization (up to 80%)
+    expr: (1 - node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 > 80 and (1 - node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 < 90
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Disk usage is: {{ humanize $value }}%"
+
+  - alert: High disk utilization (up to 90%)
+    expr: (1 - node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 >= 90
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Disk usage is: {{ humanize $value }}%"
+
+#ping
+  - alert: ping lost to target
+    expr: ping_loss_percent > 80
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "cannot ping target"
+      description: " packet loss {{ humanize $value}}%. Reported by instance {{ $labels.instance }} of job {{ $labels.job }}."
+
+##nginx
+#  - alert: nginx service is down
+#    expr:  nginx_up == 0
+#    for: 25m
+#    labels:
+#      severity: critical
+#    annotations:
+#      summary: "web server instance {{ $labels.instance }} of job {{ $labels.job }} nginx service is not working"
+
+ 
+##nginx status code 4xx
+#  - alert: 4xx nginx status codes are unusual
+#    expr: sum(rate(nginx_http_response_count_total{status =~ "4.*"}[1m])) by (status) > 200
+#    for: 5s
+#    labels:
+#      severity: critical
+#    annotations:
+#      summary: "4xx nginx status codes are unusual"
+#      description: " number of 4xx status codes: {{ humanize $value}}%. Reported by instance {{ $labels.instance }} of job {{ $labels.job }}."
+# 
+##nginx status code 5xx
+#  - alert: 5xx nginx status codes are unusual
+#    expr: sum(rate(nginx_http_response_count_total{status =~ "5.*"}[1m])) by (status) > 200
+#    for: 5s
+#    labels:
+#      severity: critical
+#    annotations:
+#      summary: "4xx nginx status codes are unusual"
+#      description: " number of 4xx status codes: {{ humanize $value}}%. Reported by instance {{ $labels.instance }} of job {{ $labels.job }}."
+ 
+
+
+
+

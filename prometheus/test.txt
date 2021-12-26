@@ -1,0 +1,29 @@
+  - alert: too much connections established
+    expr: node_netstat_Tcp_CurrEstab > 200000
+    for: 300s
+    labels:
+      severity: warning
+    annotations:
+      summary: "Server getting too much tcp connections established"
+      description: " system getting too much tcp connections established {{ humanize $value}}%. Reported by instance {{ $labels.instance }} of job {{ $labels.job }}."
+
+
+  - alert: too much connections TW
+    expr: node_sockstat_TCP_tw > 250000
+    for: 300s
+    labels:
+      severity: warning
+    annotations:
+      summary: "Server getting too much tcp connections TW"
+      description: " system getting too much tcp connections TW {{ humanize $value}}%. Reported by instance {{ $labels.instance }} of job {{ $labels.job }}."
+
+ #nginx
+  - alert: nginx is down
+    expr:  nginx_up == 1
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "web server instance {{ $labels.instance }} of job {{ $labels.job }} is down "
+
+

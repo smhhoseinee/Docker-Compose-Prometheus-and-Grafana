@@ -1,0 +1,17 @@
+212.33.204.43   monitoring-host
+212.33.204.221  testserver1
+212.33.204.222  testserver2
+212.33.204.223  testserver3
+212.33.204.233  apmserver
+212.33.204.40   db-master
+212.33.204.42   db-slave
+212.33.204.249   web_249
+5.253.24.216    ar_haproxy 
+
+127.0.0.1       localhost
+::1     localhost ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+172.28.0.7      44bc84c57463
