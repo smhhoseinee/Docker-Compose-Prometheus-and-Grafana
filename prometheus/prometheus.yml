@@ -15,7 +15,7 @@ rule_files:
 
 # A scrape configuration containing exactly one endpoint to scrape.
 scrape_configs:
-  - job_name: Skyroom-Internal
+  - job_name: internal
     scrape_timeout: 5s
     file_sd_configs:
       - files:
@@ -30,11 +30,11 @@ scrape_configs:
         target_label:  '__address__'
         replacement:   '${1}:9100'
 
-  - job_name: Skyroom-SRV
+  - job_name: production
     scrape_timeout: 5s
     file_sd_configs:
       - files:
-        - /etc/prometheus/file_sd/node/srv.yml
+        - /etc/prometheus/file_sd/node/production.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -45,11 +45,11 @@ scrape_configs:
         target_label:  '__address__'
         replacement:   '${1}:9100'
 
-  - job_name: Skyroom-Media
+  - job_name: media-v1
     scrape_timeout: 5s
     file_sd_configs:
       - files:
-        - /etc/prometheus/file_sd/node/media.yml
+        - /etc/prometheus/file_sd/node/media-v1.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -60,7 +60,22 @@ scrape_configs:
         target_label:  '__address__'
         replacement:   '${1}:9100'
 
-  - job_name: Skyroom-Licence
+  - job_name: media-v2
+    scrape_timeout: 5s
+    file_sd_configs:
+      - files:
+        - /etc/prometheus/file_sd/node/media-v2.yml
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - source_labels: ['__param_target']
+        regex:         '(.*)'
+        target_label:  '__address__'
+        replacement:   '${1}:9100'
+
+  - job_name: licence
     scrape_timeout: 5s
     file_sd_configs:
       - files:
@@ -75,7 +90,95 @@ scrape_configs:
         target_label:  '__address__'
         replacement:   '${1}:9100'
 
+  - job_name: stage
+    scrape_timeout: 5s
+    file_sd_configs:
+      - files:
+        - /etc/prometheus/file_sd/node/stage.yml
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - source_labels: ['__param_target']
+        regex:         '(.*)'
+        target_label:  '__address__'
+        replacement:   '${1}:9100'
 
+  - job_name: k8s-stage
+    scrape_timeout: 5s
+    file_sd_configs:
+      - files:
+        - /etc/prometheus/file_sd/node/k8s-stage.yml
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - source_labels: ['__param_target']
+        regex:         '(.*)'
+        target_label:  '__address__'
+        replacement:   '${1}:9100'
+
+  - job_name: mohit
+    scrape_timeout: 5s
+    file_sd_configs:
+      - files:
+        - /etc/prometheus/file_sd/node/mohit.yml
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - source_labels: ['__param_target']
+        regex:         '(.*)'
+        target_label:  '__address__'
+        replacement:   '${1}:9100'
+
+  - job_name: data-team
+    scrape_timeout: 5s
+    file_sd_configs:
+      - files:
+        - /etc/prometheus/file_sd/node/data-team.yml
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - source_labels: ['__param_target']
+        regex:         '(.*)'
+        target_label:  '__address__'
+        replacement:   '${1}:9100'
+
+  - job_name: record
+    scrape_timeout: 5s
+    file_sd_configs:
+      - files:
+        - /etc/prometheus/file_sd/node/record.yml
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - source_labels: ['__param_target']
+        regex:         '(.*)'
+        target_label:  '__address__'
+        replacement:   '${1}:9100'
+
+  - job_name: test
+    scrape_timeout: 5s
+    file_sd_configs:
+      - files:
+        - /etc/prometheus/file_sd/node/test.yml
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - source_labels: ['__param_target']
+        regex:         '(.*)'
+        target_label:  '__address__'
+        replacement:   '${1}:9100'
 
   - job_name: 'pingexporter'
     scrape_interval: 5s
@@ -85,18 +188,13 @@ scrape_configs:
   - job_name: 'haproxy_exporter'
     scrape_interval: 5s
     static_configs:
-            # - targets: ['192.168.128.35:9101']
+      - targets: ['192.168.128.35:9101']
       - targets: ['192.168.128.35:9102']
       - targets: ['192.168.128.35:9103']
 
   - job_name: 'nginx_exporter'
     scrape_interval: 5s
     static_configs:
-            #      - targets: ['192.168.128.35:9109']
-            #      - targets: ['192.168.128.35:9110']
-            #      - targets: ['192.168.128.35:9111']
-            #      - targets: ['192.168.128.35:9112']
-            #      - targets: ['192.168.128.35:9113']
       - targets: ['web1_nginx:9113']
       - targets: ['web2_nginx:9113']
       - targets: ['web3_nginx:9113']
@@ -114,57 +212,32 @@ scrape_configs:
       - targets: ['212.33.204.24:4040']
       - targets: ['212.33.204.25:4040']
 
-
-#  - job_name: 'cadvisor'
-#    scrape_interval: 5s
-#    static_configs:
-#      - targets: ['cadvisor:8080']
-
   - job_name: 'prometheus'
     scrape_interval: 10s
     static_configs:
       - targets: ['localhost:9090']
 
-        # - job_name: 'postgres'
-        # scrape_interval: 6s
-        # scrape_timeout: 5s
-        # static_configs:
-        # - targets: ['db-master:90']
-        # - targets: ['db-slave:80']
-        # - job_name: 'pushgateway'
-        # scrape_interval: 10s
-        # honor_labels: true
-        # static_configs:
-        # - targets: ['pushgateway:9091']
+  - job_name: 'prisma-read'
+    scrape_interval: 5s
+    metrics_path: /api/db/read/metrics
+    static_configs:
+      - targets: ['77.238.109.112:3000']
+      - targets: ['212.33.204.51:3000']
+      - targets: ['212.33.204.51:4000']
+        labels:
+          type: prisma-read
+          group: vms
 
-        #  - job_name: node
-        #    scrape_timeout: 5s
-        #    scrape_interval: 5s
-        #    file_sd_configs:
-        #      - files:
-        #        - /etc/prometheus/file_sd/node/*.yaml
-    
-
-#nginx status code 4xx
-  - alert: 4xx nginx status codes are unusual
-    expr: sum(rate(nginx_http_response_count_total{status =~ "4.*"}[1m])) by (status) > 120
-    for: 35s
-    labels:
-      severity: critical
-    annotations:
-      summary: "4xx nginx status codes are unusual"
-      description: " number of 4xx status codes: {{ humanize $value}}%. Reported by instance {{ $labels.instance }} of job {{ $labels.job }}."
-
-#nginx status code 5xx
-  - alert: 5xx nginx status codes are unusual
-    expr: sum(rate(nginx_http_response_count_total{status =~ "5.*"}[1m])) by (status) > 17
-    for: 5s
-    labels:
-      severity: critical
-    annotations:
-      summary: "5xx nginx status codes are unusual"
-      description: " number of 5xx status codes: {{ humanize $value}}%. Reported by instance {{ $labels.instance }} of job {{ $labels.job }}."
-
+  - job_name: 'prisma-write'
+    scrape_interval: 5s
+    metrics_path: /api/db/write/metrics
+    static_configs:
+      - targets: ['77.238.109.112:3000']
+      - targets: ['212.33.204.51:3000']
+      - targets: ['212.33.204.51:4000']
+        labels:
+          type: prisma-write
+          group: vms          
 
 alerting:
   alertmanagers:

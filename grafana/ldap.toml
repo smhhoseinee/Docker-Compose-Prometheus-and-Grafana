@@ -4,7 +4,7 @@
 
 [[servers]]
 # Ldap server host (specify multiple hosts space separated)
-host = "192.168.128.8"
+host = "192.168.128.5"
 # Default port is 389 or 636 if use_ssl = true
 port = 389
 # Set to true if ldap server supports TLS

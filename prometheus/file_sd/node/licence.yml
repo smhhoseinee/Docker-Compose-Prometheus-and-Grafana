@@ -1,21 +1,14 @@
 ---
 
-
 - labels:
-    job: Skyroom-Licence
-    type: skyroom-licence
-    group: vms
+    job: licence
   targets:
-    - 88.135.37.244 #Lic_Iran_Zamin
+    - 212.33.204.49 #License_Server
     - 79.127.126.141 #Lic_Dr_Abidi
     - 79.127.126.139 #Lic_Adliran
-    - 212.33.204.253 #Lic_Afta
-    - 46.105.255.197 #Lic_HCLA
+    - 3.127.180.97 #Lic_HCLA
     - 157.119.188.141 #Lic_Lernito
-    - 85.185.250.158  #Lic_Razi_Univ
-    - 45.94.254.34 #Lic_congressapp
-    - 185.141.133.65 #Lic_Contenow
     - 79.127.126.138 #Lic_CBI
-
-
+    - 81.31.168.172 #Lic_Sharif
+    - 92.114.19.21 #Lic_Tahghighat_Keshavarzi
 

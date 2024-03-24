@@ -1,0 +1,13 @@
+---
+
+- labels:
+    job: data-team
+  targets:
+    - 172.16.178.11 #data-warehouse-old
+    - 172.16.178.25 #data-warehouse
+    - 172.16.178.14 #skyroom-db-replica
+    - 172.16.178.18 #data-lake
+    - 172.16.128.14 #metabase
+    - 172.16.128.46 #data-scripts
+    - 172.16.128.43 #test-airbyte
+    - 172.16.178.44 #test-postgres

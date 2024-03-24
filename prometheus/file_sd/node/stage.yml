@@ -1,0 +1,57 @@
+---
+
+- labels:
+    job: stage
+  targets:
+    - 77.238.108.234 #ansible-234
+    - 77.238.108.235 #master1
+    - 77.238.108.236 #worker1
+    - 77.238.108.237 #worker2
+    - 77.238.108.238 #worker3
+
+    - 77.238.109.99 #zabbix
+
+    - 77.238.109.98 #record-dev    
+    - 77.238.109.112 #record-stage    
+
+    - 77.238.109.101 #dev-web
+    - 77.238.109.102 #dev-room
+    - 192.168.210.103 #dev-db
+
+    - 77.238.109.120 #room-page-dev
+    - 77.238.109.122 #front-room-dev
+
+    - 77.238.109.104 #Staging-v2-104
+    - 77.238.109.105 #APM-server
+    - 77.238.109.112 #dev-v2-panel
+    - 77.238.109.113 #stage-v2-panel
+    - 77.238.109.114 #k8s-test-dev
+    - 77.238.109.121 #hotfix-v2-panel
+    - 77.238.109.114 #hotfix-master
+    - 77.238.109.115 #hotfix-worker-1
+    - 77.238.109.116 #hotfix-worker-2
+    - 77.238.109.117 #hotfix-worker-3
+
+
+    - 77.238.109.123 #WordPress-Ticketing-123
+
+    - 192.168.210.105 #master1
+    - 192.168.210.106 #master2
+    - 192.168.210.107 #master3
+    - 77.238.109.108 #worker1
+    - 77.238.109.109 #worker2
+    - 77.238.109.110 #worker3
+    - 77.238.109.111 #worker4
+    
+      #- 192.168.210.21 #jira-test
+    - 192.168.210.42 #dev-mongodb-42
+
+    - 212.33.204.121 #room-test3
+    - 212.33.204.122 #room-test4
+    - 212.33.204.124 #room-test5
+    - 212.33.204.134 #room-test6
+    - 212.33.204.118 #room-test7
+    - 212.33.204.119 #room-test8
+    - 212.33.204.120 #room-test9
+    - 212.33.204.123 #room-test10
+

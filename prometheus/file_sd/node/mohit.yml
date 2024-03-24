@@ -1,0 +1,21 @@
+---
+
+- labels:
+    job: mohit
+  targets:
+    - 193.70.79.64 #mohit-wp
+    - 51.255.235.22 #mohit-ovh
+    - 3.125.11.182 #mohit-aws
+    - 35.156.228.132 #mohit-rtccloud
+    - 172.16.179.1 #mohit-mongo-01
+    - 172.16.179.2 #mohit-mongo-02
+    - 172.16.179.3 #mohit-mongo-03
+    - 172.16.138.5  #mohit-stage
+    - 172.16.179.15  #moit-stage-bkp
+    - 172.16.138.1  #moit-product
+    - 172.16.138.2  #moit-product2
+    - 172.16.138.4  #monit-product-bkp
+    - 77.238.109.123 #mohit-wp-test
+    - 172.16.138.4 #Mohit-backup
+    - 51.255.28.95 #Mohit-wp
+    - 5.196.114.237 #Mohit-new

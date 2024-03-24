@@ -32,20 +32,20 @@ groups:
 
 #memory
   - alert: High memory utilization (up to 80%)
-    expr: (1 - node_memory_MemAvailable_bytes{type!="media-vsan"} / node_memory_MemTotal_bytes{type!="media-vsan"}) * 100 > 80 and (1 - node_memory_MemAvailable_bytes{type!="media-vsan"} / node_memory_MemTotal_bytes{type!="media-vsan"})* 100 < 90
+    expr: (1 - node_memory_MemAvailable_bytes{type!="media-vsan"} / node_memory_MemTotal_bytes{type!="media-vsan"}) * 100 > 85 and (1 - node_memory_MemAvailable_bytes{type!="media-vsan"} / node_memory_MemTotal_bytes{type!="media-vsan"})* 100 < 90
     for: 2m
     labels:
       severity: warning
     annotations:
       summary: "Memory usage is {{ humanize $value }}%"
 
-  - alert: High memory utilization (up to 90%)
-    expr: (1 - node_memory_MemAvailable_bytes{type!="media-vsan"} / node_memory_MemTotal_bytes{type!="media-vsan"}) * 100 >= 90
-    for: 2m
-    labels:
-      severity: critical
-    annotations:
-      summary: "Memory usage is {{ humanize $value }}%"
+#  - alert: High memory utilization (up to 90%)
+#    expr: (1 - node_memory_MemAvailable_bytes{type!="media-vsan"} / node_memory_MemTotal_bytes{type!="media-vsan"}) * 100 >= 90
+#    for: 2m
+#    labels:
+#      severity: critical
+#    annotations:
+#      summary: "Memory usage is {{ humanize $value }}%"
 
 #disk
   - alert: High disk utilization (up to 80%)
@@ -86,8 +86,8 @@ groups:
  
 ##nginx status code 4xx
 #  - alert: 4xx nginx status codes are unusual
-#    expr: sum(rate(nginx_http_response_count_total{status =~ "4.*"}[1m])) by (status) > 200
-#    for: 5s
+#    expr: sum(rate(nginx_http_response_count_total{status =~ "4.*"}[1m])) by (status) > 120
+#    for: 35s
 #    labels:
 #      severity: critical
 #    annotations:
@@ -96,7 +96,7 @@ groups:
 # 
 ##nginx status code 5xx
 #  - alert: 5xx nginx status codes are unusual
-#    expr: sum(rate(nginx_http_response_count_total{status =~ "5.*"}[1m])) by (status) > 200
+#    expr: sum(rate(nginx_http_response_count_total{status =~ "5.*"}[1m])) by (status) > 17
 #    for: 5s
 #    labels:
 #      severity: critical
@@ -104,7 +104,4 @@ groups:
 #      summary: "4xx nginx status codes are unusual"
 #      description: " number of 4xx status codes: {{ humanize $value}}%. Reported by instance {{ $labels.instance }} of job {{ $labels.job }}."
  
-
-
-
 

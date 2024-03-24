@@ -1,0 +1,55 @@
+---
+
+- labels:
+    job: production
+  targets:
+    - 212.33.204.7 #db-master
+    - 212.33.204.8 #db-rep-1
+    - 212.33.204.9 #db-rep-2
+    - 212.33.204.70 #db-pooling-1
+    - 212.33.204.64 #db-pooling-2
+    - 212.33.204.71 #db-ha
+    - 212.33.204.65 #db-log
+    - 172.16.178.17 #db-wp
+    - 172.16.178.32 #db-test
+
+    - 212.33.204.68 #web-master 
+    - 172.16.136.21 #web-1
+    - 172.16.136.22 #web-2
+    - 172.16.136.23 #web-3
+    - 172.16.136.25 #web-5
+    - 212.33.204.51 #web-panel
+    - 172.16.136.1 #web-wordpress
+    - 31.7.69.98 #web-wordpress-test
+
+    - 212.33.204.29 #invoice
+    - 212.33.204.59 #payment
+
+    - 212.33.204.66 #file-server
+    - 172.16.180.11 #file-converter-1
+    - 172.16.180.12 #file-converter-2
+    - 172.16.180.13 #file-converter-3
+    
+    - 212.33.204.55 #room-page-1
+    - 212.33.204.69 #room-page-2
+
+    - 31.7.69.14 #rp-4
+    - 31.7.69.16 #rp-6
+    - 172.16.140.1 #rp-lb-1 
+    - 172.16.140.3 #rp-lb-3
+
+    - 172.16.136.5 #haproxy-1
+    - 172.16.136.6 #haproxy-2
+    - 178.32.127.227 #haproxy-ovh 
+
+    - 212.33.204.15 #room-front-1
+    - 212.33.204.16 #room-front-2
+    - 172.16.136.33 #room-front-3
+    - 172.16.136.34 #room-front-4
+
+    - 212.33.204.34 #nginx-rp1
+    - 212.33.204.17 #nginx-rp2
+    - 212.33.204.18 #nginx-rp3
+
+    - 212.33.204.58 #as-balancer
+
